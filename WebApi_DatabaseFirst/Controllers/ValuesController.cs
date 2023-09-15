@@ -7,9 +7,11 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using WebApi_DatabaseFirst.DBContext;
+using WebApi_DatabaseFirst.Filters;
 
 namespace WebApi_DatabaseFirst.Controllers
 {
+    [Authorize]
     public class ValuesController : ApiController
     {
         private readonly  DatabaseFirstCRUDEntities3 dbfirst;
@@ -20,6 +22,8 @@ namespace WebApi_DatabaseFirst.Controllers
         }
 
         // GET api/values
+        [Authorize]
+        [CustomAuthFilter]
         [ActionName("GetStudents")]
         public IEnumerable<StudentData> Get()
         {
